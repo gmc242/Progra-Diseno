@@ -45,6 +45,8 @@ public class Alfabeto implements IValidable<String> {
         return simbolos;
     }
 
+    public String getSimbolosString() { return mapToString(simbolos); }
+
     public void setSimbolos(HashMap<Integer, Character>  simbolos) {
         this.simbolos = simbolos;
     }
@@ -58,5 +60,11 @@ public class Alfabeto implements IValidable<String> {
             }
         }
         return map;
+    }
+
+    private static String mapToString(HashMap<Integer, Character> simbolos){
+        Character[] chars = new Character[simbolos.values().size()];
+        simbolos.values().toArray(chars);
+        return String.valueOf(chars);
     }
 }
