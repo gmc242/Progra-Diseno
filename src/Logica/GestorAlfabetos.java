@@ -43,6 +43,10 @@ public class GestorAlfabetos {
         return DaoAlfabetos.agregarAlfabeto(dto);
     }
 
+    public static boolean borrarAlfabeto(DTOAlfabeto dto){ return DaoAlfabetos.borrarAlfabeto(dto); }
+
+    public static boolean actualizarAlfabeto(DTOAlfabeto dto){ return DaoAlfabetos.actualizarAlfabeto(dto); }
+
     private static Alfabeto getAlfabetoPorDefecto(){
         try{
             return getAlfabetos().get(0);
