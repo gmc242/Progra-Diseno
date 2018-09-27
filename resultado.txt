@@ -1,0 +1,10 @@
+java.text.SimpleDateFormat@129110e0
+Hola
+Algoritmo: Vigenere
+Modo de Algoritmo: Codificado
+Resultado: 
+Metodo codificar vigenere
+Algoritmo: Transposicion
+Modo de Algoritmo: Codificado
+Resultado: 
+Metodo codificar Transposicion
