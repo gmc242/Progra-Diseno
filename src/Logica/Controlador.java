@@ -7,6 +7,10 @@ import java.util.ArrayList;
 
 public class Controlador {
 
+    public Boolean anadirAlfabeto(DTOAlfabeto dto){
+        return GestorAlfabetos.anadirAlfabeto(dto);
+    }
+
     public void procesarPeticion(DTOAlgoritmos datos, DTOAlfabeto alfa) throws Exception {
         if (datos.getAlgoritmosSelec() == null || datos.getAlgoritmosSelec().isEmpty()) {
             throw new Exception("No hay algoritmo por aplicar");
