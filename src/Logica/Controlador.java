@@ -19,39 +19,37 @@ public class Controlador {
 
             GestorAlfabetos.setActual(alfa);
 
-            try {
-                ArrayList<String> resultados = new ArrayList<>();
+            ArrayList<String> resultados = new ArrayList<>();
 
-                for (String algo : datos.getAlgoritmosSelec()) {
-                    Algoritmo algoObjeto = FactoryAlgoritmo.getAlgoritmo(algo);
+            for (String algo : datos.getAlgoritmosSelec()) {
+                Algoritmo algoObjeto = FactoryAlgoritmo.getAlgoritmo(algo);
 
-                    if(datos.isModoCodificacion())
-                        resultados.add(algoObjeto.codificar(datos.getFraseOrigen()));
-                    else
-                        resultados.add(algoObjeto.codificar(datos.getFraseOrigen()));
-                }
-
-                datos.setResultados(resultados);
-
-                escribir(datos);
-
-            } catch (Exception e) {
-                throw new Exception("Alguno de los lenguajes escogidos no existe en el ambiente");
+                if(datos.isModoCodificacion())
+                    resultados.add(algoObjeto.codificar(datos.getFraseOrigen()));
+                else
+                    resultados.add(algoObjeto.codificar(datos.getFraseOrigen()));
             }
+
+            datos.setResultados(resultados);
+
+            escribir(datos);
         }
     }
 
     public void escribir(DTOAlgoritmos datos) throws Exception{
+        String actual = ""; // String usado para reportar el error
+
         if(datos.getSalidasSelec() == null || datos.getAlgoritmosSelec().isEmpty()){
             throw new Exception("No se ha escogido un metodo de escritura");
         }else {
             try {
                 for (String dao : datos.getSalidasSelec()){
+                    actual = dao;
                     DAOEscritura daoObjeto = FactoryEscritura.getDAO(dao);
                     daoObjeto.escribir(datos);
                 }
             }catch (Exception e){
-                throw new Exception("El modo de escritura pedido no está implementado");
+                throw new Exception("No se podido guardar el archivo en el método de escritura" + actual);
             }
         }
     }

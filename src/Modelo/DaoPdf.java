@@ -18,7 +18,6 @@ public class DaoPdf implements DAOEscritura {
    public static int contPDF = 1;
     public static final String DEST = "./hello_world.pdf";
 
-
     public boolean escribir(DTOAlgoritmos dto) throws IOException {
         PDDocument document = new PDDocument();
         PDPage page = new PDPage();
@@ -35,47 +34,50 @@ public class DaoPdf implements DAOEscritura {
         }
 
 
-// Start a new content stream which will "hold" the to be created content
+        // Start a new content stream which will "hold" the to be created content
         try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
 
-// Define a text content stream using the selected font, moving the cursor and drawing the text "Hello World"
+            // Define a text content stream using the selected font, moving the cursor and drawing the text "Hello World"
             contentStream.beginText();
 
             contentStream.newLineAtOffset(25, 725);
             contentStream.setFont(font, 12);
+            contentStream.setLeading(14.5f);
 
-            contentStream.drawString("Resultados");
+            contentStream.showText("Resultados");
             contentStream.newLine();
-            contentStream.drawString(dateFormat.format(new Date()));
+            contentStream.showText("Fecha y hora: " + dateFormat.format(new Date()));
             contentStream.newLine();
-            contentStream.drawString("Frase Origen");
+            contentStream.showText("Frase Origen");
             contentStream.newLine();
-            contentStream.drawString(dto.getFraseOrigen());
-            ArrayList<String> algoritmosSelec = dto.getAlgoritmosSelec();
+            contentStream.showText(dto.getFraseOrigen());
+            contentStream.newLine();
 
-            for(int i = 0; i < algoritmosSelec.size(); i++) {
-                contentStream.drawString("Algoritmo: " + algoritmosSelec.get(i));
-                contentStream.drawString("Modo de Algoritmo: " + modoCifrado);
-                contentStream.drawString("Resultado: ");
-                contentStream.drawString(dto.getResultados().get(i));
+            for(int i = 0; i < dto.getAlgoritmosSelec().size(); i++) {
+                contentStream.showText("Algoritmo: " + dto.getAlgoritmosSelec().get(i));
+                contentStream.newLine();
+                contentStream.showText("Modo de Algoritmo: " + modoCifrado);
+                contentStream.newLine();
+                contentStream.showText("Resultado: ");
+                contentStream.showText(dto.getResultados().get(i));
+                contentStream.newLine();
             }
 
             contentStream.endText();
 
-// Make sure that the content stream is closed:
+            // Make sure that the content stream is closed:
             contentStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            throw e;
         }
 
-// Save the results and ensure that the document is properly closed:
+        // Save the results and ensure that the document is properly closed:
         try {
             document.save( "Resultado"+DaoPdf.contPDF+".pdf");
         } catch (IOException e) {
-            e.printStackTrace();
+            throw e;
         }
         document.close();
-
 
         return true;
     }
