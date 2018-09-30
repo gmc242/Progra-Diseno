@@ -53,10 +53,10 @@ public class Alfabeto implements IValidable<String> {
 
     private static HashMap<Integer, Character> stringToMap(String simbolos){
         HashMap<Integer, Character> map = new HashMap<>();
-        int id = 1;
+        int id = 0;
         for(char c : simbolos.toCharArray()){
             if(!map.containsValue(c)){
-                map.put(id, c);
+                map.put(++id, c);
             }
         }
         return map;

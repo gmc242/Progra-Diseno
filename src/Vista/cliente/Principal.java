@@ -3,10 +3,17 @@ package Vista.cliente;
 import Logica.Controlador;
 import Logica.DTOAlfabeto;
 import Logica.DTOAlgoritmos;
+import Modelo.alfabetos.Alfabeto;
+import Vista.utilidades.AlfabetoConverter;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.util.StringConverter;
 
 import java.util.ArrayList;
 
@@ -14,19 +21,41 @@ public class Principal {
 
     @FXML private RadioButton radioCodfificar;
     @FXML private RadioButton radioDecodificar;
-    @FXML private CheckBox checkVigenere;
-    @FXML private CheckBox checkCodigoTel;
-    @FXML private CheckBox checkTransposicion;
+    @FXML private HBox contenedorAlgoritmos;
     @FXML private CheckBox checkPDF;
     @FXML private CheckBox checkXML;
     @FXML private CheckBox checkTXT;
     @FXML private TextArea areaInput;
     @FXML private TextArea areaOutput;
+    @FXML private ComboBox<Alfabeto> comboAlfabetos;
+
+    private Controlador controlador;
+    private DTOAlfabeto dtoAlfa;
+    private DTOAlgoritmos dtoAlgo;
+
+    public void Principal(){}
+
+    @FXML
+    public void initialize(){
+        this.controlador = new Controlador();
+
+        this.dtoAlfa = controlador.getDTOAlfabeto();
+        this.dtoAlgo = controlador.getDTOAlgoritmos();
+
+        StringConverter<Alfabeto> conv = new AlfabetoConverter();
+        comboAlfabetos.setConverter(conv);
+
+        comboAlfabetos.getItems().addAll(dtoAlfa.getAlfabetosExistentes());
+        comboAlfabetos.getSelectionModel().select(0);
+
+        for (String s : dtoAlgo.getAlgoritmosDisponibles()){
+            contenedorAlgoritmos.getChildren().add(new CheckBox(s));
+        }
+
+    }
 
     @FXML
     public void iniciarOnAction(){
-        DTOAlfabeto dtoAlfa = new DTOAlfabeto();
-        DTOAlgoritmos dtoAlgo = new DTOAlgoritmos();
 
         ArrayList<String> algos = new ArrayList<>();
         ArrayList<String> escritura = new ArrayList<>();
@@ -38,14 +67,12 @@ public class Principal {
         if(checkTXT.isSelected())
             escritura.add("Txt");
 
-        if(checkVigenere.isSelected())
-            algos.add("Vigenere");
-
-        if(checkTransposicion.isSelected())
-            algos.add("CodigoTelefonico");
-
-        if(checkCodigoTel.isSelected())
-            algos.add("Transposicion");
+        for(Node algo : contenedorAlgoritmos.getChildren()){
+            CheckBox algoCheck = (CheckBox)algo;
+            if(algoCheck.isSelected()){
+                escritura.add(algoCheck.getText());
+            }
+        }
 
         boolean modo = radioCodfificar.isSelected();
 
@@ -54,10 +81,8 @@ public class Principal {
         dtoAlgo.setModoCodificacion(modo);
         dtoAlgo.setFraseOrigen(areaInput.getText());
 
-        Controlador c = new Controlador();
-
         try {
-            c.procesarPeticion(dtoAlgo, dtoAlfa);
+            controlador.procesarPeticion(dtoAlgo, dtoAlfa);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }

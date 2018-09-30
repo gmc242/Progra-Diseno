@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
@@ -10,13 +11,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.cliente.Principal">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" spacing="15.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.cliente.Principal">
    <children>
       <Label text="Codificador de mensajes">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+         <children>
+            <Label text="Alfabeto por utilizar" />
+            <ComboBox fx:id="comboAlfabetos" prefWidth="150.0" />
+         </children></HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
             <Label text="Mensaje por operar:" />
@@ -28,55 +34,23 @@
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
          <children>
             <Label text="Algoritmo de codificación:" />
-            <VBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="192.0" spacing="10.0">
-               <children>
-                  <CheckBox fx:id="checkVigenere" mnemonicParsing="false" text="Vigenere" />
-                  <CheckBox fx:id="checkCodigoTel" mnemonicParsing="false" text="Codigo Telefonico" />
-                  <CheckBox fx:id="checkTransposicion" mnemonicParsing="false" text="Transposicion" />
-               </children>
-            </VBox>
+            <HBox fx:id="contenedorAlgoritmos" alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="611.0" spacing="10.0" />
          </children>
-         <padding>
-            <Insets top="10.0" />
-         </padding>
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
             <Label text="Método de operación" />
-            <VBox prefHeight="60.0" prefWidth="169.0" spacing="15.0">
-               <children>
-                  <RadioButton fx:id="radioCodfificar" mnemonicParsing="false" onAction="#codOnClick" text="Codifcar" />
-                  <RadioButton fx:id="radioDecodificar" mnemonicParsing="false" onAction="#decodOnClick" text="Decodificar" />
-               </children>
-               <padding>
-                  <Insets left="25.0" />
-               </padding>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </VBox>
+            <RadioButton fx:id="radioCodfificar" mnemonicParsing="false" onAction="#codOnClick" text="Codifcar" />
+            <RadioButton fx:id="radioDecodificar" mnemonicParsing="false" onAction="#decodOnClick" text="Decodificar" />
          </children>
-         <padding>
-            <Insets top="10.0" />
-         </padding>
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
          <children>
             <Label text="Métodos de escritura:" />
-            <VBox spacing="10.0">
-               <children>
-                  <CheckBox fx:id="checkPDF" mnemonicParsing="false" text="PDF" />
-                  <CheckBox fx:id="checkXML" mnemonicParsing="false" text="XML" />
-                  <CheckBox fx:id="checkTXT" mnemonicParsing="false" text="TXT" />
-               </children>
-               <padding>
-                  <Insets left="20.0" />
-               </padding>
-            </VBox>
+            <CheckBox fx:id="checkPDF" mnemonicParsing="false" text="PDF" />
+            <CheckBox fx:id="checkXML" mnemonicParsing="false" text="XML" />
+            <CheckBox fx:id="checkTXT" mnemonicParsing="false" text="TXT" />
          </children>
-         <padding>
-            <Insets top="10.0" />
-         </padding>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>

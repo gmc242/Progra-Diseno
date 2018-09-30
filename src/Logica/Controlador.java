@@ -58,18 +58,15 @@ public class Controlador {
 
     public DTOAlfabeto getDTOAlfabeto(){
         DTOAlfabeto dto = new DTOAlfabeto();
-        HashMap<Integer, String> alfabetos = new HashMap<>();
 
         //Obtiene los alfabetos disponibles
         try {
-            for (Alfabeto alfa : GestorAlfabetos.getAlfabetos()){
-                alfabetos.put(alfa.getId(), alfa.getNombre());
-            }
+            ArrayList<Alfabeto> alfabetos = GestorAlfabetos.getAlfabetos();
+            dto.setAlfabetosExistentes(alfabetos);
         }catch (Exception e){
-            // No hace nada ?
+            dto.setAlfabetosExistentes(new ArrayList<>());
         }
 
-        dto.setAlfabetosExistentes(alfabetos);
         return dto;
     }
 

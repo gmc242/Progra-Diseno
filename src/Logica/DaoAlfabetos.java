@@ -175,9 +175,11 @@ public class DaoAlfabetos implements IValidable<Alfabeto> {
     }
 
     public static ArrayList<Alfabeto> getAlfabetos() throws Exception{
+        String path = new File("").getAbsolutePath();
+
         // Muestra los disponibles del archivo
         ArrayList<Alfabeto> alfabetos = new ArrayList<Alfabeto>();
-        String fileNameDefined = "../Archivos/Alfabetos.csv";
+        String fileNameDefined = path + "\\src\\Archivos\\Alfabetos.csv";
         File file = new File(fileNameDefined);
 
         Scanner inputStream = new Scanner(file);
