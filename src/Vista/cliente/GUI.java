@@ -1,4 +1,4 @@
-package Vista;
+package Vista.cliente;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,7 @@ public class GUI extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../Vista/principal.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Vista/cliente/principal.fxml"));
         primaryStage.setTitle("Actividad 04 - Diseño de Software");
         primaryStage.setScene(new Scene(root, 1200, 700));
         primaryStage.show();

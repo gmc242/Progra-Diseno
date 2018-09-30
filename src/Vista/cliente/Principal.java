@@ -1,4 +1,4 @@
-package Vista;
+package Vista.cliente;
 
 import Logica.Controlador;
 import Logica.DTOAlfabeto;
