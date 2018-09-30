@@ -1,10 +1,6 @@
-java.text.SimpleDateFormat@129110e0
-Hola
+2018/09/29 18:30:36
+asdsa
 Algoritmo: Vigenere
 Modo de Algoritmo: Codificado
 Resultado: 
 Metodo codificar vigenere
-Algoritmo: Transposicion
-Modo de Algoritmo: Codificado
-Resultado: 
-Metodo codificar Transposicion
