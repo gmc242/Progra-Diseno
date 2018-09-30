@@ -13,6 +13,8 @@ public class Admin {
 
     @FXML private TextArea alfabetoSimbolos;
 
+    @FXML private TextArea algoritmosLista;
+
     @FXML public void cargarInfo(){}
 
     @FXML public void cargarSimbolos(){}

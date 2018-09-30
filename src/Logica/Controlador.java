@@ -1,9 +1,12 @@
 package Logica;
 
+import Modelo.alfabetos.Alfabeto;
 import Modelo.algoritmos.Algoritmo;
 import Modelo.DAOEscritura;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 
 public class Controlador {
@@ -51,6 +54,30 @@ public class Controlador {
             }
         }
 
+    }
+
+    public DTOAlfabeto getDTOAlfabeto(){
+        DTOAlfabeto dto = new DTOAlfabeto();
+        HashMap<Integer, String> alfabetos = new HashMap<>();
+
+        //Obtiene los alfabetos disponibles
+        try {
+            for (Alfabeto alfa : GestorAlfabetos.getAlfabetos()){
+                alfabetos.put(alfa.getId(), alfa.getNombre());
+            }
+        }catch (Exception e){
+            // No hace nada ?
+        }
+
+        dto.setAlfabetosExistentes(alfabetos);
+        return dto;
+    }
+
+    public DTOAlgoritmos getDTOAlgoritmos(){
+        DTOAlgoritmos dto = new DTOAlgoritmos();
+        ArrayList<String> algoritmos = new ArrayList<>(Arrays.asList(getAlgoritmos()));
+        dto.setAlgoritmosDisponibles(algoritmos);
+        return dto;
     }
 
     // Solo esto debería cambiar para agregar un algoritmo

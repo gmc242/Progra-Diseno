@@ -66,9 +66,18 @@ public class Principal {
     }
 
     private void procesarOutput(DTOAlgoritmos dto){
+        areaOutput.setText(""); // Limpia la ventana de output
+
         for(String s : dto.getResultados()){
             areaOutput.setText(areaOutput.getText() + "\n" + s);
         }
     }
 
+    @FXML public void codOnClick(){
+        radioDecodificar.setSelected(!radioCodfificar.isSelected());
+    }
+
+    @FXML public void decodOnClick(){
+        radioCodfificar.setSelected(!radioDecodificar.isSelected());
+    }
 }
