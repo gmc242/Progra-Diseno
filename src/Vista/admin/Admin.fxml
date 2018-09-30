@@ -39,6 +39,15 @@
                               <Button mnemonicParsing="false" onAction="#cargarInfo" text="Cargar Información" />
                            </children>
                         </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Label text="ID: " />
+                              <TextField fx:id="alfabetoId" editable="false" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="167.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <padding>
                               <Insets left="10.0" />

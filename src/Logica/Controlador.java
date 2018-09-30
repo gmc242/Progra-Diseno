@@ -3,7 +3,10 @@ package Logica;
 import Modelo.alfabetos.Alfabeto;
 import Modelo.algoritmos.Algoritmo;
 import Modelo.DAOEscritura;
+import Modelo.algoritmos.Transposicion;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,8 +14,16 @@ import java.util.HashMap;
 
 public class Controlador {
 
-    public Boolean anadirAlfabeto(DTOAlfabeto dto){
-        return GestorAlfabetos.anadirAlfabeto(dto);
+    public Boolean actualizarAlfabeto(DTOAlfabeto dto){
+        return GestorAlfabetos.actualizarAlfabeto(dto);
+    }
+
+    public Boolean agregarAlfabeto(DTOAlfabeto dto){
+        return GestorAlfabetos.agregarAlfabeto(dto);
+    }
+
+    public Boolean borrarAlfabeto(DTOAlfabeto dto){
+        return GestorAlfabetos.borrarAlfabeto(dto);
     }
 
     public void procesarPeticion(DTOAlgoritmos datos, DTOAlfabeto alfa) throws Exception {
@@ -72,14 +83,32 @@ public class Controlador {
 
     public DTOAlgoritmos getDTOAlgoritmos(){
         DTOAlgoritmos dto = new DTOAlgoritmos();
-        ArrayList<String> algoritmos = new ArrayList<>(Arrays.asList(getAlgoritmos()));
+        ArrayList<String> algoritmos = getAlgoritmos();
         dto.setAlgoritmosDisponibles(algoritmos);
         return dto;
     }
 
     // Solo esto debería cambiar para agregar un algoritmo
-    public String[] getAlgoritmos(){
-        String[] res =  {"Transposicion", "Vigenere", "AlfabetoTelefonico"};
+    public ArrayList<String> getAlgoritmos(){
+        ArrayList<String> res = new ArrayList<>();
+
+        /*String path = Algoritmo.class.getResource("Algoritmo.class").getPath();
+        File file = new File(path);
+        File parent = file.getParentFile();*/
+
+        String path = System.getProperty("user.dir");
+        path += "\\out\\production\\Progra-Diseno\\Modelo\\algoritmos\\";
+        File parent = new File(path);
+
+        File[] algos = parent.listFiles();
+
+        for(File file : algos){
+            String algoritmo = file.getName();
+            algoritmo = algoritmo.substring(0, algoritmo.indexOf(".class"));
+            if(!algoritmo.equals("Algoritmo"))
+                res.add(algoritmo);
+        }
+
         return res;
     }
 }

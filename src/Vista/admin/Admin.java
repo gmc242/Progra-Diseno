@@ -16,6 +16,7 @@ public class Admin {
 
     @FXML private ComboBox<Alfabeto> alfabetosCombo;
     @FXML private TextField alfabetoNombre;
+    @FXML private TextField alfabetoId;
     @FXML private TextArea alfabetoSimbolos;
     @FXML private ListView<String> algoritmosLista;
 
@@ -35,22 +36,52 @@ public class Admin {
         alfabetosCombo.getSelectionModel().select(0);
 
         algoritmosLista.getItems().addAll(dtoAlgo.getAlgoritmosDisponibles());
-        
+
     }
 
-    @FXML public void cargarInfo(){}
+    @FXML public void cargarInfo(){
+        Alfabeto alfa = alfabetosCombo.getValue();
+        alfabetoNombre.setText(alfa.getNombre());
+        alfabetoSimbolos.setText(alfa.getSimbolosString());
+        alfabetoId.setText(String.valueOf(alfa.getId()));
+    }
 
     @FXML public void cargarSimbolos(){}
 
-    @FXML public void agregarAlfabeto(){}
+    @FXML public void agregarAlfabeto(){
+        popularDTO();
+        if(alfabetoId.getText().equals("") || alfabetoId.getText() == null)
+            controlador.agregarAlfabeto(dto);
+    }
 
-    @FXML public void eliminarAlfabeto(){}
+    @FXML public void eliminarAlfabeto(){
+        popularDTO();
+        if(!alfabetoId.getText().equals("") && alfabetoId.getText() != null)
+            controlador.borrarAlfabeto(dto);
+    }
 
-    @FXML public void modificarAlfabeto(){}
+    @FXML public void modificarAlfabeto(){
+        popularDTO();
+        if(!alfabetoId.getText().equals("") && alfabetoId.getText() != null)
+            controlador.actualizarAlfabeto(dto);
+    }
 
-    @FXML public void refrescarAlgoritmos(){}
+    @FXML public void refrescarAlgoritmos(){
+        this.dtoAlgo = controlador.getDTOAlgoritmos();
+        algoritmosLista.getItems().addAll(dtoAlgo.getAlgoritmosDisponibles());
+    }
 
-    @FXML public void cargarAlgoritmo(){}
+    @FXML public void cargarAlgoritmo(){
+        // Abrir un file chooser
+    }
 
-    @FXML public void eliminarAlgoritmo(){}
+    @FXML public void eliminarAlgoritmo(){
+        // Borrar el archivo
+    }
+
+    private void popularDTO(){
+        dto.setNombre(alfabetoNombre.getText());
+        dto.setId(Integer.valueOf(alfabetoId.getText()));
+        dto.setSimbolos(alfabetoSimbolos.getText());
+    }
 }

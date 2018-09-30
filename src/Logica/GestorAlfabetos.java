@@ -39,7 +39,7 @@ public class GestorAlfabetos {
         }
     }
 
-    public static boolean anadirAlfabeto(DTOAlfabeto dto){
+    public static boolean agregarAlfabeto(DTOAlfabeto dto){
         return DaoAlfabetos.agregarAlfabeto(dto);
     }
 
