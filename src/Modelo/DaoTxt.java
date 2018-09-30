@@ -24,15 +24,17 @@ public class DaoTxt implements DAOEscritura {
 
             FileWriter fichero = new FileWriter("resultado.txt");
             PrintWriter pw = new PrintWriter(fichero);
-            pw.println(dateFormat.format(new Date())); // Cambio para que sirva la escritura de fecha en teoria
-            pw.println(datos.getFraseOrigen());
+            pw.println("Fecha y hora: " + dateFormat.format(new Date()));
+            pw.println("Frase origen: " + datos.getFraseOrigen());
             ArrayList<String> algoritmosSelec = datos.getAlgoritmosSelec();
+            pw.println("\n");
 
             for(int i = 0; i < algoritmosSelec.size(); i++) {
                 pw.println("Algoritmo: " + algoritmosSelec.get(i));
                 pw.println("Modo de Algoritmo: " + modoCifrado);
                 pw.println("Resultado: ");
                 pw.println(datos.getResultados().get(i));
+                pw.println("\n");
             }
 
             fichero.close();

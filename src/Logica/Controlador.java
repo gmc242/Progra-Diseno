@@ -37,21 +37,20 @@ public class Controlador {
     }
 
     public void escribir(DTOAlgoritmos datos) throws Exception{
-        String actual = ""; // String usado para reportar el error
 
         if(datos.getSalidasSelec() == null || datos.getAlgoritmosSelec().isEmpty()){
             throw new Exception("No se ha escogido un metodo de escritura");
         }else {
-            try {
-                for (String dao : datos.getSalidasSelec()){
-                    actual = dao;
+            for (String dao : datos.getSalidasSelec()){
+                try {
                     DAOEscritura daoObjeto = FactoryEscritura.getDAO(dao);
                     daoObjeto.escribir(datos);
+                }catch (Exception e){
+                    throw new Exception("No se podido guardar el archivo en el método de escritura " + dao);
                 }
-            }catch (Exception e){
-                throw new Exception("No se podido guardar el archivo en el método de escritura" + actual);
             }
         }
+
     }
 
     // Solo esto debería cambiar para agregar un algoritmo

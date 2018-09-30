@@ -1,6 +1,16 @@
-2018/09/29 18:30:36
-asdsa
+Fecha y hora: 2018/09/30 12:11:10
+Frase origen: hola
+
+
 Algoritmo: Vigenere
 Modo de Algoritmo: Codificado
 Resultado: 
 Metodo codificar vigenere
+
+
+Algoritmo: Transposicion
+Modo de Algoritmo: Codificado
+Resultado: 
+Metodo codificar Transposicion
+
+

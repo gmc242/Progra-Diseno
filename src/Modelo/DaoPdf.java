@@ -46,11 +46,11 @@ public class DaoPdf implements DAOEscritura {
 
             contentStream.showText("Resultados");
             contentStream.newLine();
+            contentStream.newLine();
             contentStream.showText("Fecha y hora: " + dateFormat.format(new Date()));
             contentStream.newLine();
-            contentStream.showText("Frase Origen");
+            contentStream.showText("Frase Origen: " + dto.getFraseOrigen());
             contentStream.newLine();
-            contentStream.showText(dto.getFraseOrigen());
             contentStream.newLine();
 
             for(int i = 0; i < dto.getAlgoritmosSelec().size(); i++) {
@@ -60,6 +60,7 @@ public class DaoPdf implements DAOEscritura {
                 contentStream.newLine();
                 contentStream.showText("Resultado: ");
                 contentStream.showText(dto.getResultados().get(i));
+                contentStream.newLine();
                 contentStream.newLine();
             }
 
