@@ -1,4 +1,4 @@
-Fecha y hora: 2018/09/30 18:09:35
+Fecha y hora: 2018/10/01 13:47:41
 Frase origen: hola
 
 
@@ -6,5 +6,23 @@ Algoritmo: CodigoTelefonico
 Modo de Algoritmo: Codificado
 Resultado: 
 Metodo codificar Codigo telefonico
+
+
+Algoritmo: PalabraClave
+Modo de Algoritmo: Codificado
+Resultado: 
+hpod
+
+
+Algoritmo: Transposicion
+Modo de Algoritmo: Codificado
+Resultado: 
+aloh 
+
+
+Algoritmo: Vigenere
+Modo de Algoritmo: Codificado
+Resultado: 
+jrod
 
 

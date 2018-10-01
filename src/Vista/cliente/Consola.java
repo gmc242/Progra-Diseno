@@ -1,10 +1,9 @@
 package Vista.cliente;
 
-import Logica.Controlador;
+import Logica.server.Controlador;
 import Logica.DTOAlfabeto;
 import Logica.DTOAlgoritmos;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 

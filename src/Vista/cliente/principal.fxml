@@ -22,6 +22,7 @@
          <children>
             <Label text="Alfabeto por utilizar" />
             <ComboBox fx:id="comboAlfabetos" prefWidth="150.0" />
+            <Label />
          </children></HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>

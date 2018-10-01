@@ -25,6 +25,15 @@
       </Label>
       <TabPane>
          <tabs>
+            <Tab text="Backend">
+              <content>
+                <VBox alignment="CENTER" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" spacing="50.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#iniciarProceso" prefHeight="60.0" prefWidth="150.0" text="Inicializar Proceso" />
+                        <Button mnemonicParsing="false" onAction="#detenerProceso" prefHeight="60.0" prefWidth="150.0" text="Detener Proceso" />
+                     </children></VBox>
+              </content>
+            </Tab>
             <Tab text="Administracion de alfabetos">
                <content>
                   <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0" spacing="10.0">

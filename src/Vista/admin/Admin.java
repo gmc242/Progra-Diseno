@@ -1,9 +1,9 @@
 package Vista.admin;
 
-import Logica.Controlador;
+import Logica.server.Controlador;
 import Logica.DTOAlfabeto;
 import Logica.DTOAlgoritmos;
-import Logica.DaoAlfabetos;
+import Logica.server.Listener;
 import Modelo.alfabetos.Alfabeto;
 import Vista.utilidades.AlfabetoConverter;
 import javafx.collections.ObservableList;
@@ -30,6 +30,7 @@ public class Admin {
     private Controlador controlador;
     private DTOAlfabeto dto;
     private DTOAlgoritmos dtoAlgo;
+    private Listener listener;
 
     @FXML public void initialize(){
         this.controlador = new Controlador();
@@ -167,6 +168,16 @@ public class Admin {
                 // ¿Consume el error?
             }
         }
+    }
+
+    @FXML public void iniciarProceso(){
+        listener = new Listener(controlador);
+        Thread hilo = new Thread(listener);
+        hilo.start();
+    }
+
+    @FXML public void detenerProceso(){
+        listener.setActivo(false);
     }
 
     private void popularDTO(){

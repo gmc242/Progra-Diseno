@@ -1,15 +1,13 @@
-package Logica;
+package Logica.server;
 
+import Logica.DTOAlfabeto;
+import Logica.DTOAlgoritmos;
 import Modelo.alfabetos.Alfabeto;
 import Modelo.algoritmos.Algoritmo;
 import Modelo.DAOEscritura;
-import Modelo.algoritmos.Transposicion;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 
 
 public class Controlador {

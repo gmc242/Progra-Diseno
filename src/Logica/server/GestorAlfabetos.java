@@ -1,5 +1,6 @@
-package Logica;
+package Logica.server;
 
+import Logica.DTOAlfabeto;
 import Modelo.alfabetos.Alfabeto;
 
 import java.util.ArrayList;

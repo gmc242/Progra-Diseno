@@ -1,12 +1,10 @@
 package Modelo.alfabetos;
 
-import Logica.IValidable;
+import Logica.server.IValidable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Set;
+import java.io.Serializable;
 
-public class Alfabeto implements IValidable<String> {
+public class Alfabeto implements IValidable<String>, Serializable {
 
     protected int id;
     protected String nombre;
