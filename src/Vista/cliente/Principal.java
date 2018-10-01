@@ -70,7 +70,7 @@ public class Principal {
         for(Node algo : contenedorAlgoritmos.getChildren()){
             CheckBox algoCheck = (CheckBox)algo;
             if(algoCheck.isSelected()){
-                escritura.add(algoCheck.getText());
+                algos.add(algoCheck.getText());
             }
         }
 
@@ -80,6 +80,7 @@ public class Principal {
         dtoAlgo.setAlgoritmosSelec(algos);
         dtoAlgo.setModoCodificacion(modo);
         dtoAlgo.setFraseOrigen(areaInput.getText());
+        dtoAlfa.setId(comboAlfabetos.getValue().getId());
 
         try {
             controlador.procesarPeticion(dtoAlgo, dtoAlfa);

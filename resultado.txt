@@ -1,16 +1,10 @@
-Fecha y hora: 2018/09/30 12:11:10
+Fecha y hora: 2018/09/30 18:09:35
 Frase origen: hola
 
 
-Algoritmo: Vigenere
+Algoritmo: CodigoTelefonico
 Modo de Algoritmo: Codificado
 Resultado: 
-Metodo codificar vigenere
-
-
-Algoritmo: Transposicion
-Modo de Algoritmo: Codificado
-Resultado: 
-Metodo codificar Transposicion
+Metodo codificar Codigo telefonico
 
 

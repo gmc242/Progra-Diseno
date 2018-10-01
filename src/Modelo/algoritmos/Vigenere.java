@@ -1,16 +1,10 @@
 package Modelo.algoritmos;
 
+import Logica.GestorAlfabetos;
+
 public class Vigenere extends Algoritmo {
 
-    private int codigo;
-
-    public String codificar(String mensaje){
-        return "Metodo codificar vigenere";
-    }
-
-    public String decodificar(String mesnsaje){
-        return "Metodo decodificar vigenere";
-    }
+    private int codigo = 23;
 
     public int getCodigo() {
         return codigo;
@@ -19,9 +13,8 @@ public class Vigenere extends Algoritmo {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-    /*
-    @Override
-    public String codificar(String mensaje, String alfabeto) {
+
+    public String codificar(String mensaje) {
         int contador = 0;
         String msgCodificado = "";
         int indice = 0;
@@ -29,31 +22,64 @@ public class Vigenere extends Algoritmo {
             return "";
         }
         else {
-            for(int i = 0; i < mensaje.length(); i++ ) {
-                if (contador > 1) { contador = 0;}
-                if (mensaje.charAt(indice) == ' ') {
-                    msgCodificado += " ";
+            for (int i = 0; i < mensaje.length(); i++) {
+                if (contador > 1) {
+                    contador = 0;
                 }
-                else {
-                    indice = ubicarEnAlfabeto(alfabeto, mensaje.charAt(i));
+                if (mensaje.charAt(i) == ' ') {
+                    msgCodificado += " ";
+                } else {
+                    indice = GestorAlfabetos.getActual().getIndiceSimbolo(mensaje.charAt(i));
                     if (contador == 0) {
                         indice += (this.getCodigo() / 10);
                     } else {
                         indice += (this.getCodigo() % 10);
                     }
-                    msgCodificado += alfabeto.charAt(indice);
+                    if (indice >= GestorAlfabetos.getActual().getSimbolos().length()) {
+                        indice -= (GestorAlfabetos.getActual().getSimbolos().length())-1;
+                    }
+                    msgCodificado += GestorAlfabetos.getActual().getSimbolos().charAt(indice);
                 }
                 contador += 1;
-             }
-            return msgCodificado;
-
+            }
         }
+        return msgCodificado;
+    }
 
 
     @Override
-    public String decodificar(String mensaje){
+    public String decodificar(String mensaje) {
+        int contador = 0;
+        String msgCodificado = "";
+        int indice = 0;
+        if (mensaje.isEmpty()) {
+            return "";
+        } else {
+            for (int i = 0; i < mensaje.length(); i++) {
+                if (contador > 1) {
+                    contador = 0;
+                }
+                if (mensaje.charAt(i) == ' ') {
+                    msgCodificado += " ";
+                } else {
+                    indice = GestorAlfabetos.getActual().getIndiceSimbolo(mensaje.charAt(i));
+                    if (contador == 0) {
+                        indice -= (this.getCodigo() / 10);
+                    } else {
+                        indice -= (this.getCodigo() % 10);
+                    }
+                    if (indice < 0) {
+                        indice += GestorAlfabetos.getActual().getSimbolos().length();
+                    }
+                    msgCodificado += GestorAlfabetos.getActual().getSimbolos().charAt(indice);
+                }
+                contador += 1;
+            }
 
-        return super.decodificar(mensaje);
+
+            }
+            return msgCodificado;
     }
-    */
+
+
 }

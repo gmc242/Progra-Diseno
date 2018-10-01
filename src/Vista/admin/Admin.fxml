@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.admin.Admin">
+<VBox alignment="TOP_CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.admin.Admin">
    <children>
-      <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="202.0" text="Modo de Administración" textAlignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="202.0" text="Modo de Administración" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
@@ -35,8 +35,7 @@
                            </padding>
                            <children>
                               <Label text="Alfabetos:" />
-                              <ComboBox fx:id="alfabetosCombo" prefWidth="150.0" />
-                              <Button mnemonicParsing="false" onAction="#cargarInfo" text="Cargar Información" />
+                              <ComboBox fx:id="alfabetosCombo" onAction="#cargarInfo" prefWidth="150.0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
@@ -88,7 +87,7 @@
               <content>
                 <VBox minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
@@ -98,11 +97,17 @@
                               <Button mnemonicParsing="false" onAction="#refrescarAlgoritmos" text="Refrescar" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#cargarAlgoritmo" text="Cargar Algoritmo" />
                               <Button mnemonicParsing="false" onAction="#eliminarAlgoritmo" text="Eliminar Algoritmo" />
                            </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="75.0" />
+                           </padding>
                         </HBox>
                      </children>
                      <padding>

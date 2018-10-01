@@ -10,13 +10,16 @@ import java.util.*;
 
 public class DaoAlfabetos implements IValidable<Alfabeto> {
 
+    private static String path = System.getProperty("user.dir") + "\\src\\Archivos\\Alfabetos.csv";
+
     public static boolean agregarAlfabeto(DTOAlfabeto dto) {
         try{
+
             // Obtiene los alfabetos actuales
             ArrayList<Alfabeto> alfabetos = getAlfabetos();
 
             // Abre el archivo para sobre-escritura
-            PrintWriter pw = new PrintWriter(new File("../Archivos/Alfabetos.csv"));
+            PrintWriter pw = new PrintWriter(new File(path));
             StringBuffer sb = new StringBuffer();
 
             // Adjunta el header del csv al buffer
@@ -29,17 +32,19 @@ public class DaoAlfabetos implements IValidable<Alfabeto> {
                 sb.append(",");
                 sb.append(alfabeto.getNombre());
                 sb.append(",");
-                sb.append(alfabeto.getSimbolosString());
-                sb.append("/n");
+                sb.append(alfabeto.getSimbolos());
+                sb.append("\n");
             }
 
+            // Crea una instancia
+            Alfabeto nuevo = new Alfabeto(dto.getNombre(), dto.getSimbolos());
+
             // Adjunta los datos del alfabeto nuevo al buffer
-            sb.append(dto.getId());
+            sb.append(nuevo.getId());
             sb.append(",");
-            sb.append(dto.getNombre());
+            sb.append(nuevo.getNombre());
             sb.append(",");
-            sb.append(dto.getSimbolos());
-            sb.append("/n");
+            sb.append(nuevo.getSimbolos());
 
             // Escribe el buffer al archivo
             pw.write(sb.toString());
@@ -61,13 +66,15 @@ public class DaoAlfabetos implements IValidable<Alfabeto> {
                 // Adjunta el header del csv al buffer
                 sb.append("ID,Nombre,Simbolos\n");
 
+                // Crea una instancia
+                Alfabeto nuevo = new Alfabeto(dto.getNombre(), dto.getSimbolos());
+
                 // Adjunta los datos del alfabeto nuevo al buffer
-                sb.append(dto.getId());
+                sb.append(nuevo.getId());
                 sb.append(",");
-                sb.append(dto.getNombre());
+                sb.append(nuevo.getNombre());
                 sb.append(",");
-                sb.append(dto.getSimbolos());
-                sb.append("/n");
+                sb.append(nuevo.getSimbolos());
 
                 // Escribe el buffer al archivo
                 pw.write(sb.toString());
@@ -87,7 +94,7 @@ public class DaoAlfabetos implements IValidable<Alfabeto> {
             ArrayList<Alfabeto> alfabetos = getAlfabetos();
 
             // Abre el archivo para sobre-escritura
-            PrintWriter pw = new PrintWriter(new File("../Archivos/Alfabetos.csv"));
+            PrintWriter pw = new PrintWriter(new File(path));
             StringBuffer sb = new StringBuffer();
 
             // Adjunta el header del csv al buffer
@@ -101,8 +108,8 @@ public class DaoAlfabetos implements IValidable<Alfabeto> {
                     sb.append(",");
                     sb.append(alfabeto.getNombre());
                     sb.append(",");
-                    sb.append(alfabeto.getSimbolosString());
-                    sb.append("/n");
+                    sb.append(alfabeto.getSimbolos());
+                    sb.append("\n");
                 }
             }
 
@@ -123,7 +130,7 @@ public class DaoAlfabetos implements IValidable<Alfabeto> {
             ArrayList<Alfabeto> alfabetos = getAlfabetos();
 
             // Abre el archivo para sobre-escritura
-            PrintWriter pw = new PrintWriter(new File("../Archivos/Alfabetos.csv"));
+            PrintWriter pw = new PrintWriter(new File(path));
             StringBuffer sb = new StringBuffer();
 
             // Adjunta el header del csv al buffer
@@ -137,8 +144,8 @@ public class DaoAlfabetos implements IValidable<Alfabeto> {
                     sb.append(",");
                     sb.append(alfabeto.getNombre());
                     sb.append(",");
-                    sb.append(alfabeto.getSimbolosString());
-                    sb.append("/n");
+                    sb.append(alfabeto.getSimbolos());
+                    sb.append("\n");
                 }else{
                     // Adjunta los datos del alfabeto por actualizar al buffer
                     sb.append(dto.getId());
@@ -146,7 +153,7 @@ public class DaoAlfabetos implements IValidable<Alfabeto> {
                     sb.append(dto.getNombre());
                     sb.append(",");
                     sb.append(dto.getSimbolos());
-                    sb.append("/n");
+                    sb.append("\n");
                 }
             }
 
@@ -175,21 +182,20 @@ public class DaoAlfabetos implements IValidable<Alfabeto> {
     }
 
     public static ArrayList<Alfabeto> getAlfabetos() throws Exception{
-        String path = new File("").getAbsolutePath();
 
         // Muestra los disponibles del archivo
         ArrayList<Alfabeto> alfabetos = new ArrayList<Alfabeto>();
-        String fileNameDefined = path + "\\src\\Archivos\\Alfabetos.csv";
-        File file = new File(fileNameDefined);
+        File file = new File(path);
 
         Scanner inputStream = new Scanner(file);
         String[] fields;
+        inputStream.nextLine(); // Consume el header
 
         while(inputStream.hasNext()){
             String line = inputStream.nextLine();
             fields = line.split(",");
-
-            alfabetos.add(new Alfabeto( Integer.parseInt(fields[0]),fields[1],fields[2]));
+            int id = Integer.parseInt(fields[0]);
+            alfabetos.add(new Alfabeto(id,fields[1],fields[2]));
         }
         // after loop, close scanner
         inputStream.close();
@@ -197,10 +203,13 @@ public class DaoAlfabetos implements IValidable<Alfabeto> {
         return alfabetos;
     }
 
+    public static String getPath(){
+        return path;
+    }
+
     public boolean validar(Alfabeto obj){
         boolean valido = true;
         return valido;
     }
-
 
 }

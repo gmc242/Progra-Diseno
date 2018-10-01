@@ -21,6 +21,8 @@ public class AlfabetoConverter extends StringConverter<Alfabeto> {
     }
 
     public String toString(Alfabeto alfabeto){
+        if(alfabeto == null)
+            return "";
         return alfabeto.getNombre();
     }
 }

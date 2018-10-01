@@ -10,18 +10,29 @@ public class Alfabeto implements IValidable<String> {
 
     protected int id;
     protected String nombre;
-    protected HashMap<Integer, Character> simbolos;
+    protected String simbolos;
+    private static int creados = 0;
+
+    public Alfabeto(String nombre, String alfabeto){
+        setId(++creados);
+        setNombre(nombre);
+        setSimbolos(alfabeto);
+    }
 
     public Alfabeto(int id, String nombre, String simbolos){
         setId(id);
         setNombre(nombre);
-        setSimbolos(stringToMap(simbolos));
+        setSimbolos(simbolos);
+        creados = (creados < id) ? id : creados;
     }
 
     public boolean validar(String s){
-        for(char c: s.toCharArray())
-            if(!simbolos.containsValue(c))
+        // Valida entradas
+        for (char c: s.toCharArray()){
+            if(!simbolos.contains(c+""))
                 return false;
+        }
+
         return true;
     }
 
@@ -41,30 +52,22 @@ public class Alfabeto implements IValidable<String> {
         this.nombre = nombre;
     }
 
-    public HashMap<Integer, Character>  getSimbolos() {
+    public String getSimbolos() {
         return simbolos;
     }
 
-    public String getSimbolosString() { return mapToString(simbolos); }
+    public void setSimbolos(String simbolos) {
+        this.simbolos = "";
 
-    public void setSimbolos(HashMap<Integer, Character>  simbolos) {
-        this.simbolos = simbolos;
-    }
-
-    private static HashMap<Integer, Character> stringToMap(String simbolos){
-        HashMap<Integer, Character> map = new HashMap<>();
-        int id = 0;
+        // Evita duplicados
         for(char c : simbolos.toCharArray()){
-            if(!map.containsValue(c)){
-                map.put(++id, c);
-            }
+            if(!this.simbolos.contains(c+""))
+                this.simbolos += c;
         }
-        return map;
+
     }
 
-    private static String mapToString(HashMap<Integer, Character> simbolos){
-        Character[] chars = new Character[simbolos.values().size()];
-        simbolos.values().toArray(chars);
-        return String.valueOf(chars);
+    public int getIndiceSimbolo(char c){
+        return simbolos.indexOf(c);
     }
 }
