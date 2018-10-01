@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class AlfabetoTelefonico extends Alfabeto {
 
-    private ArrayList<HashMap<Integer,Character>> buckets;
+    private ArrayList<String> buckets;
 
     public AlfabetoTelefonico(int id, String nombre, String simbolos){
         super(id,nombre,simbolos);
@@ -13,7 +13,7 @@ public class AlfabetoTelefonico extends Alfabeto {
     }
 
     @Override
-    public void setSimbolos(HashMap<Integer, Character>  simbolos) {
+    public void setSimbolos(String simbolos) {
         this.simbolos = simbolos;
         calcularBuckets();
     }

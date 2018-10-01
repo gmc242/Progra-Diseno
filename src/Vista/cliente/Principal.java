@@ -70,7 +70,7 @@ public class Principal {
         for(Node algo : contenedorAlgoritmos.getChildren()){
             CheckBox algoCheck = (CheckBox)algo;
             if(algoCheck.isSelected()){
-                escritura.add(algoCheck.getText());
+                algos.add(algoCheck.getText());
             }
         }
 

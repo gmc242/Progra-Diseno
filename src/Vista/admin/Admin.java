@@ -42,7 +42,7 @@ public class Admin {
     @FXML public void cargarInfo(){
         Alfabeto alfa = alfabetosCombo.getValue();
         alfabetoNombre.setText(alfa.getNombre());
-        alfabetoSimbolos.setText(alfa.getSimbolosString());
+        alfabetoSimbolos.setText(alfa.getSimbolos());
         alfabetoId.setText(String.valueOf(alfa.getId()));
     }
 
