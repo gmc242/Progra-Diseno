@@ -1,9 +1,10 @@
 package Logica;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DTOAlgoritmos {
+public class DTOAlgoritmos implements Serializable {
 
     private String fraseOrigen;
     private ArrayList<String> algoritmosSelec;

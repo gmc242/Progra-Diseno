@@ -1,4 +1,4 @@
-package Logica;
+package Logica.server;
 
 public interface IValidable<T> {
 

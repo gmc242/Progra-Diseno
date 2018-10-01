@@ -1,6 +1,6 @@
 package Vista.utilidades;
 
-import Logica.GestorAlfabetos;
+import Logica.server.GestorAlfabetos;
 import Modelo.alfabetos.Alfabeto;
 import javafx.util.StringConverter;
 
@@ -21,6 +21,8 @@ public class AlfabetoConverter extends StringConverter<Alfabeto> {
     }
 
     public String toString(Alfabeto alfabeto){
+        if(alfabeto == null)
+            return "";
         return alfabeto.getNombre();
     }
 }

@@ -1,4 +1,4 @@
-package Logica;
+package Logica.server;
 
 import Modelo.algoritmos.Algoritmo;
 
