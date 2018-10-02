@@ -9,7 +9,6 @@ public class Alfabeto implements IValidable<String>, Serializable {
     protected int id;
     protected String nombre;
     protected String simbolos;
-
     private static int creados = 0;
 
     public Alfabeto(String nombre, String alfabeto){
@@ -18,20 +17,10 @@ public class Alfabeto implements IValidable<String>, Serializable {
         setSimbolos(alfabeto);
     }
 
-
     public Alfabeto(int id, String nombre, String simbolos){
         setId(id);
         setNombre(nombre);
         setSimbolos(simbolos);
-
-    }
-
-    public boolean validar(String s){
-        for(char c: s.toCharArray()) {
-            if (!simbolos.contains(""+c))
-                return false;
-        }
-
         creados = (creados < id) ? id : creados;
     }
 
@@ -41,7 +30,6 @@ public class Alfabeto implements IValidable<String>, Serializable {
             if(!simbolos.contains(c+""))
                 return false;
         }
-
 
         return true;
     }
@@ -62,35 +50,6 @@ public class Alfabeto implements IValidable<String>, Serializable {
         this.nombre = nombre;
     }
 
-
-    public String  getSimbolos() {
-        return simbolos;
-    }
-
-    public char getSimbolo(int indice) {
-        return 'a';
-    }
-
-    public int getIndiceSimbolo(char letra) {
-        for (int i = 0; i < this.getSimbolos().length(); i++) {
-            if (letra == this.getSimbolos().charAt(i)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    //public String getSimbolosString() { return mapToString(simbolos); }
-
-    public void setSimbolos(String  simbolos) {
-        this.simbolos = simbolos;
-    }
-
-
-    private static HashMap<Integer, Character> stringToMap(String simbolos){
-        HashMap<Integer, Character> map = new HashMap<>();
-        int id = 0;
-
     public String getSimbolos() {
         return simbolos;
     }
@@ -99,7 +58,6 @@ public class Alfabeto implements IValidable<String>, Serializable {
         this.simbolos = "";
 
         // Evita duplicados
-
         for(char c : simbolos.toCharArray()){
             if(!this.simbolos.contains(c+""))
                 this.simbolos += c;
@@ -107,6 +65,7 @@ public class Alfabeto implements IValidable<String>, Serializable {
 
     }
 
-
-     */
+    public int getIndiceSimbolo(char c){
+        return simbolos.indexOf(c);
+    }
 }

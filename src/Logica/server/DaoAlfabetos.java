@@ -33,10 +33,7 @@ public class DaoAlfabetos implements IValidable<Alfabeto> {
                 sb.append(alfabeto.getNombre());
                 sb.append(",");
                 sb.append(alfabeto.getSimbolos());
-               sb.append("/n");
-
-               sb.append("\n");
-
+                sb.append("\n");
             }
 
             // Crea una instancia
@@ -112,11 +109,7 @@ public class DaoAlfabetos implements IValidable<Alfabeto> {
                     sb.append(alfabeto.getNombre());
                     sb.append(",");
                     sb.append(alfabeto.getSimbolos());
-
-                    sb.append("/n");
-
                     sb.append("\n");
-
                 }
             }
 
@@ -152,11 +145,7 @@ public class DaoAlfabetos implements IValidable<Alfabeto> {
                     sb.append(alfabeto.getNombre());
                     sb.append(",");
                     sb.append(alfabeto.getSimbolos());
-
-                    sb.append("/n");
-
                     sb.append("\n");
-
                 }else{
                     // Adjunta los datos del alfabeto por actualizar al buffer
                     sb.append(dto.getId());

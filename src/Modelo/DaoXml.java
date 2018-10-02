@@ -1,7 +1,6 @@
 package Modelo;
 
 import Logica.DTOAlgoritmos;
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -23,7 +22,7 @@ public class DaoXml implements DAOEscritura {
 
     public boolean escribir(DTOAlgoritmos dto){
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        String modoCifrado = "";
+        String modoCifrado;
 
         if (dto.isModoCodificacion()) {
             modoCifrado = "Codificado";

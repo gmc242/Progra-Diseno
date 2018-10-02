@@ -1,6 +1,6 @@
 package Modelo.algoritmos;
 
-import Logica.GestorAlfabetos;
+import Logica.server.GestorAlfabetos;
 
 public class PalabraClave extends Algoritmo {
 

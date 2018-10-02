@@ -4,7 +4,6 @@ import Modelo.alfabetos.Alfabeto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class DTOAlfabeto implements Serializable {
 

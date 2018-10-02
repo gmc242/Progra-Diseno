@@ -17,7 +17,7 @@ public class Vigenere extends Algoritmo {
     public String codificar(String mensaje) {
         int contador = 0;
         String msgCodificado = "";
-        int indice = 0;
+        int indice;
         if (mensaje.isEmpty()) {
             return "";
         }

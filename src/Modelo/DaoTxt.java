@@ -14,7 +14,7 @@ public class DaoTxt implements DAOEscritura {
         try {
 
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            String modoCifrado = "";
+            String modoCifrado;
 
             if (datos.isModoCodificacion()) {
                 modoCifrado = "Codificado";

@@ -10,7 +10,6 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class DaoPdf implements DAOEscritura {
@@ -25,7 +24,7 @@ public class DaoPdf implements DAOEscritura {
         String fraseFinal = "";
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         PDFont font = PDType1Font.HELVETICA_BOLD;
-        String modoCifrado = "";
+        String modoCifrado;
 
         if (dto.isModoCodificacion()) {
             modoCifrado = "Codificado";

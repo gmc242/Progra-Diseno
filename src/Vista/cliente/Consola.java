@@ -25,7 +25,7 @@ public class Consola {
         }
 
         System.out.println("¿Desea codificar o decodificar? C/D");
-        boolean operacion = scan.next().equals("C") ? true : false;
+        boolean operacion = scan.next().equals("C");
 
         System.out.println("Ingrese el id del alfabeto por utilizar (0 es por defecto)");
         int idAlfa = scan.nextInt();

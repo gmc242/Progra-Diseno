@@ -1,37 +1,10 @@
-<<<<<<< HEAD
-Fecha y hora: 2018/09/30 18:31:10
-=======
-Fecha y hora: 2018/10/01 13:47:41
->>>>>>> upstream/master
-Frase origen: hola
-
-
-Algoritmo: CodigoTelefonico
-Modo de Algoritmo: Codificado
-Resultado: 
-Metodo codificar Codigo telefonico
-
-
-Algoritmo: PalabraClave
-Modo de Algoritmo: Codificado
-Resultado: 
-<<<<<<< HEAD
-
-
-=======
-hpod
+Fecha y hora: 2018/10/01 14:48:20
+Frase origen: hola mundo
 
 
 Algoritmo: Transposicion
 Modo de Algoritmo: Codificado
 Resultado: 
-aloh 
+aloh odnum 
 
-
-Algoritmo: Vigenere
-Modo de Algoritmo: Codificado
-Resultado: 
-jrod
-
->>>>>>> upstream/master
 

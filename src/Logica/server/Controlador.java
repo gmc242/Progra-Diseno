@@ -28,31 +28,24 @@ public class Controlador {
         if (datos.getAlgoritmosSelec() == null || datos.getAlgoritmosSelec().isEmpty()) {
             throw new Exception("No hay algoritmo por aplicar");
         } else {
-            ArrayList<String> resultados = new ArrayList<>();
+
             GestorAlfabetos.setActual(alfa);
-            System.out.println(datos.getFraseOrigen());
-            System.out.println(GestorAlfabetos.getActual().getSimbolos());
-            /*
-            if (!GestorAlfabetos.getActual().validar(datos.getFraseOrigen())){
-                resultados.add("Un simbolo de la oracion no pertenece al alfabeto");
-                datos.setResultados(resultados);
+
+            ArrayList<String> resultados = new ArrayList<>();
+
+            for (String algo : datos.getAlgoritmosSelec()) {
+                Algoritmo algoObjeto = FactoryAlgoritmo.getAlgoritmo(algo);
+
+                if(datos.isModoCodificacion())
+                    resultados.add(algoObjeto.codificar(datos.getFraseOrigen()));
+                else
+                    resultados.add(algoObjeto.decodificar(datos.getFraseOrigen()));
             }
-            else{
-*/
-                for (String algo : datos.getAlgoritmosSelec()) {
-                    Algoritmo algoObjeto = FactoryAlgoritmo.getAlgoritmo(algo);
 
-                    if (datos.isModoCodificacion())
-                        resultados.add(algoObjeto.codificar(datos.getFraseOrigen()));
-                    else
-                        resultados.add(algoObjeto.decodificar(datos.getFraseOrigen()));
-                }
+            datos.setResultados(resultados);
 
-                datos.setResultados(resultados);
-
-                escribir(datos);
-            }
-        //}
+            escribir(datos);
+        }
     }
 
     public void escribir(DTOAlgoritmos datos) throws Exception{
@@ -61,12 +54,12 @@ public class Controlador {
             throw new Exception("No se ha escogido un metodo de escritura");
         }else {
             for (String dao : datos.getSalidasSelec()){
-                //try {
+                try {
                     DAOEscritura daoObjeto = FactoryEscritura.getDAO(dao);
                     daoObjeto.escribir(datos);
-                //}catch (Exception e){
-                //    throw new Exception("No se podido guardar el archivo en el método de escritura " + dao);
-                //}
+                }catch (Exception e){
+                    throw new Exception("No se podido guardar el archivo en el método de escritura " + dao);
+                }
             }
         }
 
