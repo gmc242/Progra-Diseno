@@ -7,6 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 
 public class Listener implements Runnable {
 
@@ -25,19 +26,28 @@ public class Listener implements Runnable {
             ServerSocket socket = new ServerSocket(4444);
 
             while(activo){
-                // Acepta la petición
-                Socket cliente = socket.accept();
+               try{
+                   // Agrega un timeout para que socket.accept() no bloquee sin interrupciones
+                   socket.setSoTimeout(100);
 
-                // Envia los DTO's
-                enviarDTOs(cliente, controlador.getDTOAlgoritmos(), controlador.getDTOAlfabeto());
+                   // Acepta la petición
+                   Socket cliente = socket.accept();
 
-                // Maneja la conexión
-                ListenerClient listenerClient = new ListenerClient(controlador, cliente);
-                Thread hilo = new Thread(listenerClient);
-                hilo.start();
+                   // Envia los DTO's
+                   enviarDTOs(cliente, controlador.getDTOAlgoritmos(), controlador.getDTOAlfabeto());
 
+                   // Maneja la conexión
+                   ListenerClient listenerClient = new ListenerClient(controlador, cliente);
+                   Thread hilo = new Thread(listenerClient);
+                   hilo.start();
+               }catch (SocketTimeoutException e){
+                   continue;
+               }
             }
-        }catch (Exception e){
+
+            System.out.println("Estoy cerrando el proceso");
+        }
+        catch (Exception e){
             // Deberia generar un mensaje de error usando el thread original
             System.out.println("Error en el listener");
         }

@@ -171,13 +171,21 @@ public class Admin {
     }
 
     @FXML public void iniciarProceso(){
-        listener = new Listener(controlador);
-        Thread hilo = new Thread(listener);
-        hilo.start();
+        if(listener == null){
+            listener = new Listener(controlador);
+            Thread hilo = new Thread(listener);
+            hilo.start();
+        }else{
+            // Mensaje de que ya está escuchando
+        }
     }
 
     @FXML public void detenerProceso(){
-        listener.setActivo(false);
+        if(listener != null)
+            listener.setActivo(false);
+        else
+            System.out.println("No hay un proceso activo");
+            //Mensaje de que no hay listener escuchand
     }
 
     private void popularDTO(){
