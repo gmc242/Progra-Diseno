@@ -1,4 +1,4 @@
-package Modelo.alfabetos;
+package Modelo;
 
 import Logica.server.IValidable;
 

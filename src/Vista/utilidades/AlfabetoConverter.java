@@ -1,7 +1,7 @@
 package Vista.utilidades;
 
 import Logica.server.GestorAlfabetos;
-import Modelo.alfabetos.Alfabeto;
+import Modelo.Alfabeto;
 import javafx.util.StringConverter;
 
 import java.util.ArrayList;

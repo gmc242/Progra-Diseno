@@ -4,7 +4,7 @@ import Logica.server.Controlador;
 import Logica.DTOAlfabeto;
 import Logica.DTOAlgoritmos;
 import Logica.server.Listener;
-import Modelo.alfabetos.Alfabeto;
+import Modelo.Alfabeto;
 import Vista.utilidades.AlfabetoConverter;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

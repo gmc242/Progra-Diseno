@@ -2,7 +2,7 @@ package Logica.server;
 
 import Logica.DTOAlfabeto;
 import Logica.DTOAlgoritmos;
-import Modelo.alfabetos.Alfabeto;
+import Modelo.Alfabeto;
 import Modelo.algoritmos.Algoritmo;
 import Modelo.DAOEscritura;
 

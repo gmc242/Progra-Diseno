@@ -4,8 +4,7 @@ import Logica.DTOAlfabeto;
 import Logica.DTOAlgoritmos;
 import Logica.cliente.ControladorCliente;
 import Logica.cliente.DTOString;
-import Logica.server.Controlador;
-import Modelo.alfabetos.Alfabeto;
+import Modelo.Alfabeto;
 import Vista.utilidades.AlfabetoConverter;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -13,11 +12,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.util.StringConverter;
 
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.InetAddress;
-import java.net.Socket;
 import java.util.ArrayList;
 
 public class Principal {
