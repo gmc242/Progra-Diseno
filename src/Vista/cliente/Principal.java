@@ -3,15 +3,13 @@ package Vista.cliente;
 import Logica.DTOAlfabeto;
 import Logica.DTOAlgoritmos;
 import Logica.cliente.ControladorCliente;
+import Logica.cliente.DTOString;
 import Logica.server.Controlador;
 import Modelo.alfabetos.Alfabeto;
 import Vista.utilidades.AlfabetoConverter;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.util.StringConverter;
 
@@ -33,6 +31,12 @@ public class Principal {
     @FXML private TextArea areaInput;
     @FXML private TextArea areaOutput;
     @FXML private ComboBox<Alfabeto> comboAlfabetos;
+    @FXML private RadioButton radioManual;
+    @FXML private RadioButton radioConse;
+    @FXML private RadioButton radioDupli;
+    @FXML private RadioButton radioAmbos;
+    @FXML private TextField largoField;
+    private final ToggleGroup groupGeneracion = new ToggleGroup();
 
     private ControladorCliente controlador;
 
@@ -40,6 +44,11 @@ public class Principal {
 
     @FXML
     public void initialize(){
+
+        radioManual.setToggleGroup(groupGeneracion);
+        radioAmbos.setToggleGroup(groupGeneracion);
+        radioDupli.setToggleGroup(groupGeneracion);
+        radioConse.setToggleGroup(groupGeneracion);
 
         controlador = new ControladorCliente();
 
@@ -117,6 +126,27 @@ public class Principal {
 
     @FXML public void decodOnClick(){
         radioCodfificar.setSelected(!radioDecodificar.isSelected());
+    }
+
+    @FXML public void generarOnClick(){
+        RadioButton seleccionado = (RadioButton) groupGeneracion.getSelectedToggle();
+        if(seleccionado != null){
+            if(seleccionado.getText().equals("Manual")) {
+                areaInput.setEditable(true);
+            }
+            else{
+                areaInput.setEditable(false);
+                DTOString dto = controlador.getDtoString();
+                dto.setTipo(seleccionado.getText());
+                dto.setAlfabeto(comboAlfabetos.getValue().getSimbolos());
+                dto.setLargo(Integer.valueOf(largoField.getText()));
+                controlador.generarString(dto);
+                areaInput.setText(dto.getResultado());
+            }
+        }else{
+            // Muestra mensaje: No ha seleccionado ningún método de codificación
+        }
+
     }
 
     private void procesarOutput(DTOAlgoritmos dto){

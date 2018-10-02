@@ -12,7 +12,7 @@ public class GUI extends Application{
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../../Vista/cliente/principal.fxml"));
         primaryStage.setTitle("Proyecto Programado Diseño de Software");
-        primaryStage.setScene(new Scene(root, 1200, 700));
+        primaryStage.setScene(new Scene(root, 800, 500));
         primaryStage.show();
     }
 

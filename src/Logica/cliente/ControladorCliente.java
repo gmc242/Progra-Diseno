@@ -2,6 +2,10 @@ package Logica.cliente;
 
 import Logica.DTOAlfabeto;
 import Logica.DTOAlgoritmos;
+import Logica.cliente.generacion.ConseqDupliBuilder;
+import Logica.cliente.generacion.GeneradorStrings;
+import Logica.cliente.generacion.NonConseqDupliBuilder;
+import Logica.cliente.generacion.NonConseqNonDupliBuilder;
 
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
@@ -13,9 +17,13 @@ public class ControladorCliente {
 
     private DTOAlfabeto dtoAlfabeto;
     private DTOAlgoritmos dtoAlgoritmos;
+    private DTOString dtoString;
     private Socket cliente;
 
     public void initialize(){
+
+        dtoString = new DTOString();
+
         try{
             // Se conecta a local host en puerto 4444
             cliente = new Socket(InetAddress.getLocalHost(), 4444);
@@ -44,6 +52,44 @@ public class ControladorCliente {
 
     public void setDtoAlgoritmos(DTOAlgoritmos dtoAlgoritmos) {
         this.dtoAlgoritmos = dtoAlgoritmos;
+    }
+
+    public DTOString getDtoString() {
+        return dtoString;
+    }
+
+    public void setDtoString(DTOString dtoString) {
+        this.dtoString = dtoString;
+    }
+
+    public void generarString(DTOString dto){
+
+        GeneradorStrings generador = new GeneradorStrings();
+
+        // Hace algo con esto
+        switch (dto.getTipo()){
+            case "Sin restricciones": {
+                generador.setCreadorStrings(new ConseqDupliBuilder());
+                generador.generarString(dto.getLargo(), dto.getAlfabeto());
+                String resultado = generador.getString();
+                dto.setResultado(resultado);
+                break;
+            }
+            case "Sin consecutivos": {
+                generador.setCreadorStrings(new NonConseqDupliBuilder());
+                generador.generarString(dto.getLargo(), dto.getAlfabeto());
+                String resultado = generador.getString();
+                dto.setResultado(resultado);
+                break;
+            }
+            case "Sin consecutivos ni duplicados": {
+                generador.setCreadorStrings(new NonConseqNonDupliBuilder());
+                generador.generarString(dto.getLargo(), dto.getAlfabeto());
+                String resultado = generador.getString();
+                dto.setResultado(resultado);
+                break;
+            }
+        }
     }
 
     public void recibirDTOs() throws Exception{

@@ -1,10 +1,10 @@
-Fecha y hora: 2018/10/01 20:44:49
-Frase origen: hola
+Fecha y hora: 2018/10/02 00:20:33
+Frase origen: mlig qkmgzewwmyyfbaj
 
 
 Algoritmo: Binario
 Modo de Algoritmo: Codificado
 Resultado: 
-111 1101 1011 0 
+1100 1011 1000 110 * 1111 1010 1100 110 11000 100 10101 10101 1100 10111 10111 101 1 0 1001 
 
 
