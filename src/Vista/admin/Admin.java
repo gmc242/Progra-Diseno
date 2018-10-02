@@ -4,7 +4,7 @@ import Logica.server.Controlador;
 import Logica.DTOAlfabeto;
 import Logica.DTOAlgoritmos;
 import Logica.server.Listener;
-import Modelo.alfabetos.Alfabeto;
+import Modelo.Alfabeto;
 import Vista.utilidades.AlfabetoConverter;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -171,13 +171,21 @@ public class Admin {
     }
 
     @FXML public void iniciarProceso(){
-        listener = new Listener(controlador);
-        Thread hilo = new Thread(listener);
-        hilo.start();
+        if(listener == null){
+            listener = new Listener(controlador);
+            Thread hilo = new Thread(listener);
+            hilo.start();
+        }else{
+            // Mensaje de que ya está escuchando
+        }
     }
 
     @FXML public void detenerProceso(){
-        listener.setActivo(false);
+        if(listener != null)
+            listener.setActivo(false);
+        else
+            System.out.println("No hay un proceso activo");
+            //Mensaje de que no hay listener escuchand
     }
 
     private void popularDTO(){

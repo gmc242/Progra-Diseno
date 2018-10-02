@@ -21,7 +21,7 @@ public class PalabraClave extends Algoritmo {
         int indiceTxt;
         int indiceCode;
         for(int i = 0; i < mensaje.length(); i++) {
-            if (cont > getClave().length()) {  //Si el contador es mayor que el largo del  codigo, se reinicia, para iterar sobre el codigo
+            if (cont >= getClave().length()) {  //Si el contador es mayor que el largo del  codigo, se reinicia, para iterar sobre el codigo
                 cont = 0;
             }
             if (mensaje.charAt(i) == ' ') {
@@ -50,7 +50,7 @@ public class PalabraClave extends Algoritmo {
         int indiceTxt;
         int indiceCode;
         for(int i = 0; i < mensaje.length(); i++) {
-            if (cont > getClave().length()) {  //Si el contador es mayor que el largo del  codigo, se reinicia, para iterar sobre el codigo
+            if (cont >= getClave().length()) {  //Si el contador es mayor que el largo del  codigo, se reinicia, para iterar sobre el codigo
                 cont = 0;
             }
             if (mensaje.charAt(i) == ' ') {

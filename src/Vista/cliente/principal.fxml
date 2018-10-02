@@ -7,11 +7,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" spacing="15.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.cliente.Principal">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" spacing="15.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.cliente.Principal">
    <children>
       <Label text="Codificador de mensajes">
          <font>
@@ -26,8 +27,24 @@
          </children></HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
+            <Label text="Tipo de generación del mensaje por procesar:" />
+            <RadioButton fx:id="radioManual" mnemonicParsing="false" text="Manual" />
+            <RadioButton fx:id="radioConse" mnemonicParsing="false" text="Sin consecutivos" />
+            <RadioButton fx:id="radioDupli" mnemonicParsing="false" text="Sin restricciones" />
+            <RadioButton fx:id="radioAmbos" mnemonicParsing="false" text="Sin consecutivos ni duplicados" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+         <children>
+            <Label text="Largo de la cadena:" />
+            <TextField fx:id="largoField" />
+            <Button mnemonicParsing="false" onAction="#generarOnClick" text="Generar Mensaje" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="180.0" prefWidth="790.0" spacing="10.0">
+         <children>
             <Label text="Mensaje por operar:" />
-            <TextArea fx:id="areaInput" prefHeight="200.0" prefWidth="200.0" />
+            <TextArea fx:id="areaInput" editable="false" prefHeight="67.0" prefWidth="200.0" />
             <Label text="Mensajes Resultado:" />
             <TextArea fx:id="areaOutput" editable="false" prefHeight="200.0" prefWidth="200.0" />
          </children>

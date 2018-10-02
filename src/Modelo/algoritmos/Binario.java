@@ -2,13 +2,11 @@ package Modelo.algoritmos;
 
 import Logica.server.GestorAlfabetos;
 
-import java.util.Objects;
-
 public class Binario extends Algoritmo {
 
     public String codificar(String mensaje){
         String resultado = "";
-        int indice;
+        int indice = 0;
         for( int i = 0; i < mensaje.length(); i++) {
             if (mensaje.charAt(i) == ' ') {
                 resultado += "* ";
@@ -30,7 +28,7 @@ public class Binario extends Algoritmo {
     public String decodificar(String mensaje) {
         String resultado = "";
         for (String part : mensaje.split(" ")) {
-            if (Objects.equals(part, "*")) {
+            if (part == "*") {
                 resultado += " ";
             }
             else {

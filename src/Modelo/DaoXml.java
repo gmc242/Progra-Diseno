@@ -1,6 +1,7 @@
 package Modelo;
 
 import Logica.DTOAlgoritmos;
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -22,7 +23,8 @@ public class DaoXml implements DAOEscritura {
 
     public boolean escribir(DTOAlgoritmos dto){
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        String modoCifrado;
+        DateFormat fileName = new SimpleDateFormat("ddMMyy-hhmmss");
+        String modoCifrado = "";
 
         if (dto.isModoCodificacion()) {
             modoCifrado = "Codificado";
@@ -74,7 +76,7 @@ public class DaoXml implements DAOEscritura {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource domSource = new DOMSource(document);
-            StreamResult streamResult = new StreamResult(new File("resultado.xml"));
+            StreamResult streamResult = new StreamResult(new File(".\\src\\Archivos\\Resultados\\"+String.format(fileName.format( new Date() )+".txt")));
             transformer.transform(domSource, streamResult);
         } catch (ParserConfigurationException pce) {
 

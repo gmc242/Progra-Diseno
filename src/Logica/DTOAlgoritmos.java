@@ -2,6 +2,7 @@ package Logica;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DTOAlgoritmos implements Serializable {
 

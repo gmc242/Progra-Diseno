@@ -1,7 +1,7 @@
 package Logica.server;
 
 import Logica.DTOAlfabeto;
-import Modelo.alfabetos.Alfabeto;
+import Modelo.Alfabeto;
 
 import java.io.File;
 import java.io.IOException;

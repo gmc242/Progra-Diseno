@@ -2,7 +2,7 @@ package Logica.server;
 
 import Logica.DTOAlfabeto;
 import Logica.DTOAlgoritmos;
-import Modelo.alfabetos.Alfabeto;
+import Modelo.Alfabeto;
 import Modelo.algoritmos.Algoritmo;
 import Modelo.DAOEscritura;
 
@@ -39,7 +39,7 @@ public class Controlador {
                 if(datos.isModoCodificacion())
                     resultados.add(algoObjeto.codificar(datos.getFraseOrigen()));
                 else
-                    resultados.add(algoObjeto.decodificar(datos.getFraseOrigen()));
+                    resultados.add(algoObjeto.codificar(datos.getFraseOrigen()));
             }
 
             datos.setResultados(resultados);

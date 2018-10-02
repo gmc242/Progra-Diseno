@@ -1,6 +1,6 @@
 package Logica;
 
-import Modelo.alfabetos.Alfabeto;
+import Modelo.Alfabeto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
