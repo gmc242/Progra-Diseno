@@ -14,6 +14,7 @@ public class DaoTxt implements DAOEscritura {
         try {
 
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            DateFormat fileName = new SimpleDateFormat("ddMMyy-hhmmss");
             String modoCifrado = "";
 
             if (datos.isModoCodificacion()) {
@@ -22,7 +23,7 @@ public class DaoTxt implements DAOEscritura {
                 modoCifrado = "Decodificado";
             }
 
-            FileWriter fichero = new FileWriter("resultado.txt");
+            FileWriter fichero = new FileWriter(".\\src\\Archivos\\Resultados\\"+String.format(fileName.format( new Date() )+".txt"));
             PrintWriter pw = new PrintWriter(fichero);
             pw.println("Fecha y hora: " + dateFormat.format(new Date()));
             pw.println("Frase origen: " + datos.getFraseOrigen());
