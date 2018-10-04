@@ -7,11 +7,15 @@ import Modelo.algoritmos.Algoritmo;
 import Modelo.DAOEscritura;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 
 public class Controlador {
+
+    // Uso de patrón strategy
+    private Algoritmo strategy;
 
     public Boolean actualizarAlfabeto(DTOAlfabeto dto){
         return GestorAlfabetos.actualizarAlfabeto(dto);
@@ -34,13 +38,19 @@ public class Controlador {
 
             ArrayList<String> resultados = new ArrayList<>();
 
+            // Uso del patrón strategy
             for (String algo : datos.getAlgoritmosSelec()) {
-                Algoritmo algoObjeto = FactoryAlgoritmo.getAlgoritmo(algo);
 
+                // Setea la estrategia
+                setStrategy(algo);
+
+                // Uso de la estrategia para codificar
                 if(datos.isModoCodificacion())
-                    resultados.add(algoObjeto.codificar(datos.getFraseOrigen()));
+                    resultados.add(strategy.codificar(datos.getFraseOrigen()));
+                
+                // Uso de la estrategia para decodificar
                 else
-                    resultados.add(algoObjeto.codificar(datos.getFraseOrigen()));
+                    resultados.add(strategy.decodificar(datos.getFraseOrigen()));
             }
 
             datos.setResultados(resultados);
@@ -116,4 +126,12 @@ public class Controlador {
         ArrayList<File> res = new ArrayList<>(Arrays.asList(root.listFiles()));
         return res;
     }
+
+    // setStrategy con uso de instrospección
+    public void setStrategy(String algoritmo) throws Exception{
+        String path = Algoritmo.class.getPackage().getName();
+        String pathCompleto = path + "." + algoritmo;
+        strategy = (Algoritmo) Class.forName(pathCompleto).getDeclaredConstructor().newInstance();
+    }
+
 }
