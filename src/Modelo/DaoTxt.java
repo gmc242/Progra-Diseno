@@ -23,7 +23,7 @@ public class DaoTxt implements DAOEscritura {
                 modoCifrado = "Decodificado";
             }
 
-            FileWriter fichero = new FileWriter(".\\src\\Archivos\\Resultados\\"+String.format(fileName.format( new Date() )+".txt"));
+            FileWriter fichero = new FileWriter(path + String.format(fileName.format( new Date() )+".txt"));
             PrintWriter pw = new PrintWriter(fichero);
             pw.println("Fecha y hora: " + dateFormat.format(new Date()));
             pw.println("Frase origen: " + datos.getFraseOrigen());

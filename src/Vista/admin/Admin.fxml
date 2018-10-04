@@ -11,7 +11,6 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -131,35 +130,31 @@
               <content>
                 <VBox minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-                           <children>
-                              <Label text="Tipo de bitácora que desea observar:" />
-                              <ComboBox prefWidth="150.0" />
-                              <Button mnemonicParsing="false" text="Cargar Bitácoras" />
-                           </children>
-                        </HBox>
                         <HBox prefHeight="299.0" prefWidth="600.0">
                            <children>
                               <Accordion>
                                 <panes>
-                                  <TitledPane animated="false" prefHeight="249.0" prefWidth="876.0" text="untitled 1">
+                                  <TitledPane animated="false" prefHeight="249.0" prefWidth="876.0" text="PDF">
                                     <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      <VBox fx:id="contenedorPDF" alignment="CENTER_LEFT" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" spacing="15.0" />
                                     </content>
                                   </TitledPane>
-                                  <TitledPane animated="false" text="untitled 2">
+                                  <TitledPane animated="false" text="XML">
                                     <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      <VBox fx:id="contenedorXML" alignment="CENTER_LEFT" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" spacing="15.0" />
                                     </content>
                                   </TitledPane>
-                                  <TitledPane animated="false" text="untitled 3">
+                                  <TitledPane animated="false" text="TXT">
                                     <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      <VBox fx:id="contenedorTXT" alignment="CENTER_LEFT" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" spacing="15.0" />
                                     </content>
                                   </TitledPane>
                                 </panes>
                               </Accordion>
-                           </children></HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin></HBox>
                      </children></VBox>
               </content>
             </Tab>

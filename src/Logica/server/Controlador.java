@@ -8,6 +8,7 @@ import Modelo.DAOEscritura;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class Controlador {
@@ -107,6 +108,12 @@ public class Controlador {
                 res.add(algoritmo);
         }
 
+        return res;
+    }
+
+    public ArrayList<File> getBitacoras(){
+        File root = new File(DAOEscritura.path);
+        ArrayList<File> res = new ArrayList<>(Arrays.asList(root.listFiles()));
         return res;
     }
 }

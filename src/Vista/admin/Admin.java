@@ -7,15 +7,21 @@ import Logica.server.Listener;
 import Modelo.Alfabeto;
 import Vista.utilidades.AlfabetoConverter;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.util.StringConverter;
 
+import java.awt.*;
+import java.beans.EventHandler;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.Scanner;
 
@@ -26,6 +32,9 @@ public class Admin {
     @FXML private TextField alfabetoId;
     @FXML private TextArea alfabetoSimbolos;
     @FXML private ListView<String> algoritmosLista;
+    @FXML private VBox contenedorPDF;
+    @FXML private VBox contenedorTXT;
+    @FXML private VBox contenedorXML;
 
     private Controlador controlador;
     private DTOAlfabeto dto;
@@ -45,6 +54,30 @@ public class Admin {
 
         algoritmosLista.getItems().addAll(dtoAlgo.getAlgoritmosDisponibles());
 
+        ArrayList<File> bitacoras = controlador.getBitacoras();
+
+        for(File bitacora : bitacoras){
+
+            Button btn = new Button(bitacora.getName());
+            btn.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        Desktop.getDesktop().open(bitacora);
+                    }catch (Exception e){
+                        // Muestra mensaje: "No se pudo abrir el archivo"
+                    }
+                }
+            });
+
+            if(bitacora.getName().toLowerCase().contains("pdf"))
+                contenedorPDF.getChildren().add(btn);
+
+            else if(bitacora.getName().toLowerCase().contains("xml"))
+                contenedorXML.getChildren().add(btn);
+            else
+                contenedorTXT.getChildren().add(btn);
+        }
     }
 
     @FXML public void cargarInfo(){

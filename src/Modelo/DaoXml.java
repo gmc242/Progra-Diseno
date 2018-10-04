@@ -76,7 +76,7 @@ public class DaoXml implements DAOEscritura {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource domSource = new DOMSource(document);
-            StreamResult streamResult = new StreamResult(new File(".\\src\\Archivos\\Resultados\\"+String.format(fileName.format( new Date() )+".txt")));
+            StreamResult streamResult = new StreamResult(new File(path + String.format(fileName.format( new Date() )+".txt")));
             transformer.transform(domSource, streamResult);
         } catch (ParserConfigurationException pce) {
 

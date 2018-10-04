@@ -75,7 +75,7 @@ public class DaoPdf implements DAOEscritura {
 
         // Save the results and ensure that the document is properly closed:
         try {
-            document.save( ".\\src\\Archivos\\Resultados\\"+String.format(fileName.format( new Date() )+".pdf"));
+            document.save( path + String.format(fileName.format( new Date() )+".pdf"));
         } catch (IOException e) {
             throw e;
         }
