@@ -24,6 +24,7 @@ public class DaoPdf implements DAOEscritura {
         document.addPage( page );
         String fraseFinal = "";
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        DateFormat fileName = new SimpleDateFormat("ddMMyy-hhmmss");
         PDFont font = PDType1Font.HELVETICA_BOLD;
         String modoCifrado = "";
 
@@ -74,7 +75,7 @@ public class DaoPdf implements DAOEscritura {
 
         // Save the results and ensure that the document is properly closed:
         try {
-            document.save( "Resultado"+DaoPdf.contPDF+".pdf");
+            document.save( ".\\src\\Archivos\\Resultados\\"+String.format(fileName.format( new Date() )+".pdf"));
         } catch (IOException e) {
             throw e;
         }
