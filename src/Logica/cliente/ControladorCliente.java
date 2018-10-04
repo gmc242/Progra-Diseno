@@ -58,16 +58,15 @@ public class ControladorCliente {
         return dtoString;
     }
 
-    public void setDtoString(DTOString dtoString) {
-        this.dtoString = dtoString;
-    }
-
     public void generarString(DTOString dto){
 
+        // Uso del patrón builder
+
+        // Crea un director
         GeneradorStrings generador = new GeneradorStrings();
 
-        // Hace algo con esto
         switch (dto.getTipo()){
+            // Setea el builder necesario y crea un objeto mediante el director
             case "Sin restricciones": {
                 generador.setCreadorStrings(new ConseqDupliBuilder());
                 generador.generarString(dto.getLargo(), dto.getAlfabeto());
@@ -95,8 +94,11 @@ public class ControladorCliente {
     public void recibirDTOs() throws Exception{
         while(!cliente.isClosed() && cliente.isConnected()){
             if(cliente.getInputStream().available() > 0){
-                // Recibe el primer objeto
+                // Se evitan bloqueos por envíos del servidor que no llegaron.
+                cliente.setSoTimeout(1000);
+                // Se obtiene el stream que viene del servidor
                 ObjectInputStream in = new ObjectInputStream(cliente.getInputStream());
+                // Recibe el primer objeto
                 dtoAlgoritmos = (DTOAlgoritmos) in.readObject();
                 // Recibe el segundo objeto
                 dtoAlfabeto = (DTOAlfabeto) in.readObject();
@@ -129,6 +131,7 @@ public class ControladorCliente {
     public void finalizar(){
         try {
             cliente.close();
+            System.out.println("Se cerró el socket del cliente");
         }catch (Exception e){
             System.out.println("El socket no se pudo cerrar");
         }

@@ -1,5 +1,6 @@
 package Logica.cliente.generacion;
 
+// Rol de AbstractBuilder
 public abstract class BuilderString {
 
     protected String cadena;

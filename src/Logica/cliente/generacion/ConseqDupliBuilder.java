@@ -2,6 +2,7 @@ package Logica.cliente.generacion;
 
 import java.util.Random;
 
+// Rol de ConcreteBuilder
 public class ConseqDupliBuilder extends BuilderString{
 
     public void buildString(int largo, String alfabeto) {

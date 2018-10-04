@@ -151,4 +151,8 @@ public class Principal {
         }
     }
 
+    public void finalizar(){
+        controlador.finalizar();
+    }
+
 }

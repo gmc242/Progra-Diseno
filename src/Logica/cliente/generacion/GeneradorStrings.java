@@ -1,12 +1,9 @@
 package Logica.cliente.generacion;
 
+// Rol de director en el patrón Builder
 public class GeneradorStrings {
 
     private BuilderString creadorStrings;
-
-    public BuilderString getCreadorStrings() {
-        return creadorStrings;
-    }
 
     public void setCreadorStrings(BuilderString creadorStrings) {
         this.creadorStrings = creadorStrings;

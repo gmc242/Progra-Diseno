@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 public class Controlador {
 
-    // Uso de patrón strategy
+    // Uso de patrón strategy, esta clase sería el context
     private Algoritmo strategy;
 
     public Boolean actualizarAlfabeto(DTOAlfabeto dto){
@@ -47,7 +47,7 @@ public class Controlador {
                 // Uso de la estrategia para codificar
                 if(datos.isModoCodificacion())
                     resultados.add(strategy.codificar(datos.getFraseOrigen()));
-                
+
                 // Uso de la estrategia para decodificar
                 else
                     resultados.add(strategy.decodificar(datos.getFraseOrigen()));
@@ -64,9 +64,15 @@ public class Controlador {
         if(datos.getSalidasSelec() == null || datos.getAlgoritmosSelec().isEmpty()){
             throw new Exception("No se ha escogido un metodo de escritura");
         }else {
+
+            // Declaración de la fabrica para obtener los métodos de escritura
+            FactoryEscritura factory = new FactoryEscritura();
+
             for (String dao : datos.getSalidasSelec()){
                 try {
-                    DAOEscritura daoObjeto = FactoryEscritura.getDAO(dao);
+                    // Uso de la fábrica para obtener métodos de escritura
+                    DAOEscritura daoObjeto = factory.getDAO(dao);
+                    // Uso del objeto obtenido de la fábrica para escribir
                     daoObjeto.escribir(datos);
                 }catch (Exception e){
                     throw new Exception("No se podido guardar el archivo en el método de escritura " + dao);
@@ -101,13 +107,7 @@ public class Controlador {
     public ArrayList<String> getAlgoritmos(){
         ArrayList<String> res = new ArrayList<>();
 
-        /*String path = Algoritmo.class.getResource("Algoritmo.class").getPath();
-        File file = new File(path);
-        File parent = file.getParentFile();*/
-
-        String path = System.getProperty("user.dir");
-        path += "\\out\\production\\Progra-Diseno\\Modelo\\algoritmos\\";
-        File parent = new File(path);
+        File parent = new File(Algoritmo.getPath());
 
         File[] algos = parent.listFiles();
 
@@ -129,9 +129,10 @@ public class Controlador {
 
     // setStrategy con uso de instrospección
     public void setStrategy(String algoritmo) throws Exception{
-        String path = Algoritmo.class.getPackage().getName();
-        String pathCompleto = path + "." + algoritmo;
-        strategy = (Algoritmo) Class.forName(pathCompleto).getDeclaredConstructor().newInstance();
+        //String path = Algoritmo.getPath() + algoritmo + ".class";
+
+        String path = Algoritmo.class.getPackage().getName() + "." + algoritmo;
+        strategy = (Algoritmo) Class.forName(path).getDeclaredConstructor().newInstance();
     }
 
 }
