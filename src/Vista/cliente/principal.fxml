@@ -28,10 +28,10 @@
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
             <Label text="Tipo de generación del mensaje por procesar:" />
-            <RadioButton fx:id="radioManual" mnemonicParsing="false" text="Manual" />
-            <RadioButton fx:id="radioConse" mnemonicParsing="false" text="Sin consecutivos" />
-            <RadioButton fx:id="radioDupli" mnemonicParsing="false" text="Sin restricciones" />
-            <RadioButton fx:id="radioAmbos" mnemonicParsing="false" text="Sin consecutivos ni duplicados" />
+            <RadioButton fx:id="radioManual" mnemonicParsing="false" onAction="#manejoInput" text="Manual" />
+            <RadioButton fx:id="radioConse" mnemonicParsing="false"  onAction="#manejoInput" text="Sin consecutivos" />
+            <RadioButton fx:id="radioDupli" mnemonicParsing="false"  onAction="#manejoInput" text="Sin restricciones" />
+            <RadioButton fx:id="radioAmbos" mnemonicParsing="false"  onAction="#manejoInput" text="Sin consecutivos ni duplicados" />
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0">

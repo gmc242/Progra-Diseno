@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.util.StringConverter;
 
+import java.nio.file.attribute.GroupPrincipal;
 import java.util.ArrayList;
 
 public class Principal {
@@ -141,6 +142,17 @@ public class Principal {
             // Muestra mensaje: No ha seleccionado ningún método de codificación
         }
 
+    }
+
+    @FXML public void manejoInput(){
+        RadioButton seleccionado = (RadioButton)groupGeneracion.getSelectedToggle();
+        if(seleccionado.equals(radioManual)) {
+            areaInput.setEditable(true);
+        }
+        else {
+            areaInput.setText("");
+            areaInput.setEditable(false);
+        }
     }
 
     private void procesarOutput(DTOAlgoritmos dto){
