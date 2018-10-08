@@ -128,12 +128,11 @@ public class ControladorCliente {
         }
     }
 
-    public void finalizar(){
+    public void finalizar()throws Exception{
         try {
             cliente.close();
-            System.out.println("Se cerró el socket del cliente");
         }catch (Exception e){
-            System.out.println("El socket no se pudo cerrar");
+            throw new Exception("El socket no se pudo cerrar");
         }
     }
 }

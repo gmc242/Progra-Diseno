@@ -5,6 +5,7 @@ import Logica.DTOAlgoritmos;
 import Logica.cliente.ControladorCliente;
 import Logica.cliente.DTOString;
 import Modelo.Alfabeto;
+import Vista.MessageBox;
 import Vista.utilidades.AlfabetoConverter;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -64,7 +65,7 @@ public class Principal {
                 contenedorAlgoritmos.getChildren().add(new CheckBox(s));
             }
         }else{
-            System.out.println("No se pudo obtener los objetos DTO.");
+            MessageBox.crearAlerta("No se pudo obtener los objetos DTO.");
         }
 
     }
@@ -111,7 +112,7 @@ public class Principal {
             // Actualiza la ventana
             procesarOutput(controlador.getDtoAlgoritmos());
         }catch (Exception e){
-            System.out.println(e.getMessage());
+            MessageBox.crearAlerta(e.getMessage());
         }
     }
 
@@ -139,7 +140,7 @@ public class Principal {
                 areaInput.setText(dto.getResultado());
             }
         }else{
-            // Muestra mensaje: No ha seleccionado ningún método de codificación
+            MessageBox.crearAlerta("No se ha seleccionado método de codificación");// Muestra mensaje: No ha seleccionado ningún método de codificación
         }
 
     }
@@ -164,7 +165,11 @@ public class Principal {
     }
 
     public void finalizar(){
-        controlador.finalizar();
+        try {
+            controlador.finalizar();
+        }catch (Exception e){
+            MessageBox.crearAlerta(e.getMessage());
+        }
     }
 
 }

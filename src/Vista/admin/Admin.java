@@ -5,6 +5,7 @@ import Logica.DTOAlfabeto;
 import Logica.DTOAlgoritmos;
 import Logica.server.Listener;
 import Modelo.Alfabeto;
+import Vista.MessageBox;
 import Vista.utilidades.AlfabetoConverter;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -65,7 +66,7 @@ public class Admin {
                     try {
                         Desktop.getDesktop().open(bitacora);
                     }catch (Exception e){
-                        // Muestra mensaje: "No se pudo abrir el archivo"
+                        MessageBox.crearAlerta("No se pudo abrir el archivo de bitácora.\n" + e.getMessage());
                     }
                 }
             });
@@ -97,6 +98,7 @@ public class Admin {
                     simbolos += scanner.next();
                 alfabetoSimbolos.setText(simbolos);
             }catch (Exception e){
+                MessageBox.crearAlerta(e.getMessage());
                 // Muestra mensaje de error
             }
         }else{
@@ -111,6 +113,7 @@ public class Admin {
             this.alfabetosCombo.getItems().setAll(dto.getAlfabetosExistentes());
             this.alfabetosCombo.getSelectionModel().select(alfabetosCombo.getItems().size() - 1);
         }else{
+            MessageBox.crearAlerta("No se pudo agregar el alfabeto");
             // Muestra mensaje de que no pudo agregar
         }
     }
@@ -123,9 +126,11 @@ public class Admin {
                 this.alfabetosCombo.getItems().setAll(dto.getAlfabetosExistentes());
                 resetearGUI();
             }else{
+                MessageBox.crearAlerta("No se pudo eliminar el alfabeto");
                 // Mensaje: No se pudo eliminar exitosamente el alfabeto
             }
         }else{
+            MessageBox.crearAlerta("No se ha seleccionado un alfabeto para eliminar");
             // Muestra mensaje de que no puede modificar porque no se ha seleccionado
         }
 
@@ -138,9 +143,11 @@ public class Admin {
                 this.dto = controlador.getDTOAlfabeto();
                 this.alfabetosCombo.getItems().setAll(dto.getAlfabetosExistentes());
             }else{
+                MessageBox.crearAlerta("La modificación no ha sido exitosa");
                 // Mensaje: La modificación no fue exitosa
             }
         }else{
+            MessageBox.crearAlerta("No se ha podido modificar ya que no ha sido seleccionado");
             // Muestra mensaje de que no puede modificar porque no ha seleccionado
         }
     }
@@ -150,7 +157,7 @@ public class Admin {
         algoritmosLista.getItems().setAll(dtoAlgo.getAlgoritmosDisponibles());
     }
 
-    @FXML public void cargarAlgoritmo() throws IOException{
+    @FXML public void cargarAlgoritmo(){
 
         File fileIn = new FileChooser().showOpenDialog(null);
 
@@ -163,22 +170,30 @@ public class Admin {
             InputStream is = null;
             OutputStream os = null;
 
-            try{
+            try {
                 is = new FileInputStream(fileIn);
                 os = new FileOutputStream(fileOut);
 
                 byte[] buffer = new byte[1024];
                 int length;
 
-                while((length = is.read(buffer)) > 0){
+                while ((length = is.read(buffer)) > 0) {
                     os.write(buffer, 0, length);
                 }
+
+                MessageBox.crearConfirmacion("Se ha copiado el archivo con éxito");
+            }catch (Exception e){
+                MessageBox.crearAlerta(e.getMessage());
             }finally {
-                is.close();
-                os.close();
+                try{
+                    is.close();
+                    os.close();
+                }catch (Exception e){
+                    MessageBox.crearAlerta(e.getMessage());
+                }
             }
         }else{
-            // No se escogio archivo
+            MessageBox.crearAlerta("No se ha seleccionado un archivo");
         }
     }
 
@@ -192,9 +207,11 @@ public class Admin {
             File file = new File(path);
             try {
                 if (file.delete()) {
+                    MessageBox.crearConfirmacion("Se ha eliminado con éxito");
                     // Mensaje de éxito
                     refrescarAlgoritmos();
                 } else {
+                    MessageBox.crearAlerta("No se ha podido eliminar el archivo");
                     // Mensaje de error
                 }
             }catch (ConcurrentModificationException e){
@@ -209,7 +226,7 @@ public class Admin {
             Thread hilo = new Thread(listener);
             hilo.start();
         }else{
-            // Mensaje de que ya está escuchando
+            MessageBox.crearAlerta("El proceso de escucha de clientes");// Mensaje de que ya está escuchando
         }
     }
 
@@ -217,7 +234,7 @@ public class Admin {
         if(listener != null)
             listener.setActivo(false);
         else
-            System.out.println("No hay un proceso activo");
+            MessageBox.crearAlerta("No hay un proceso activo");
             //Mensaje de que no hay listener escuchand
     }
 
